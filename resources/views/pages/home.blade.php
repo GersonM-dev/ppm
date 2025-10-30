@@ -2,7 +2,7 @@
 @section('content')
 
     <!-- Hero -->
-    <div id="controls-carousel" class="relative w-full max-w-screen-xl mx-auto" data-carousel="static">
+    <section id="home" class="relative w-full max-w-screen-xl mx-auto scroll-mt-24" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="relative w-full overflow-hidden rounded-lg">
             <div class="relative w-full" style="padding-top:50%;">
@@ -45,11 +45,11 @@
                 <span class="sr-only">Next</span>
             </span>
         </button>
-    </div>
+    </section>
     <!-- Hero - end -->
 
     <!-- About Us -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <section id="about" class="bg-white py-6 sm:py-8 lg:py-12 scroll-mt-24">
         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
             <div class="grid gap-8 md:grid-cols-2 lg:gap-12">
                 <div>
@@ -82,11 +82,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <!-- About Us - end -->
 
     <!-- Struktur Organisasi -->
-    <div id="controls-carousel" class="relative w-full max-w-screen-xl mx-auto shadow-xl/30" data-carousel="static">
+    <section id="struktur" class="relative w-full max-w-screen-xl mx-auto shadow-xl/30 scroll-mt-24" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="relative w-full overflow-hidden rounded-lg">
             <div class="relative w-full" style="padding-top:50%;">
@@ -129,11 +129,11 @@
                 <span class="sr-only">Next</span>
             </span>
         </button>
-    </div>
+    </section>
     <!-- Struktur Organisasi - end -->
 
     <!-- Data Santri -->
-    <section class="bg-white py-6 sm:py-8 lg:py-12">
+    <section id="data-santri" class="bg-white py-6 sm:py-8 lg:py-12 scroll-mt-24">
         <div class="mx-auto max-w-screen-3xl px-4 md:px-8">
             <div class="mx-auto max-w-3xl w-full bg-white rounded-lg shadow-xl/30 p-4 md:p-6">
                 <!-- HEADER -->
@@ -283,7 +283,7 @@
     <!-- Data Santri - end -->
 
     <!-- Kurikulum -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <section id="kurikulum" class="bg-white py-6 sm:py-8 lg:py-12 scroll-mt-24">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-10 md:mb-16">
@@ -369,11 +369,11 @@
                 <!-- feature - end -->
             </div>
         </div>
-    </div>
+    </section>
     <!-- Kurikulum - end -->
 
     <!-- Kegiatan Belajar Mengajar -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <section id="kegiatan" class="bg-white py-6 sm:py-8 lg:py-12 scroll-mt-24">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-10 md:mb-16">
@@ -531,7 +531,118 @@
                 <!-- article - end -->
             </div>
         </div>
-    </div>
+    </section>
     <!-- Kegiatan Belajar Mengajar - end -->
+
+    <!-- Daftar -->
+    <section id="daftar" class="bg-[#F5F7F6] py-6 sm:py-8 lg:py-12 scroll-mt-24">
+        <div class="mx-auto max-w-screen-xl px-4 md:px-8">
+            <div class="rounded-2xl bg-white px-6 py-10 text-center shadow-xl/30 md:px-10">
+                <h2 class="text-2xl font-bold text-gray-800 md:text-3xl">Pendaftaran Santri</h2>
+                <p class="mt-3 text-gray-600 md:text-lg">Hubungi tim administrasi kami untuk memulai proses pendaftaran santri baru.</p>
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    <a href="tel:02816842450"
+                        class="inline-flex items-center justify-center rounded-lg bg-[#334B49] px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-[#2a3d3b]">Hubungi
+                        via Telepon</a>
+                    <a href="mailto:ppmalkautsarbinainsani@gmail.com"
+                        class="inline-flex items-center justify-center rounded-lg border border-[#334B49] px-6 py-3 text-base font-semibold text-[#334B49] transition hover:bg-[#334B49] hover:text-white">Kirim
+                        Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Daftar - end -->
+
+    <!-- Sign Up -->
+    <section id="signup" class="bg-white py-6 sm:py-8 lg:py-12 scroll-mt-24">
+        <div class="mx-auto max-w-screen-md px-4 md:px-8">
+            <div class="rounded-2xl bg-[#334B49] px-6 py-10 text-center text-white shadow-xl/30 md:px-12">
+                <h2 class="text-2xl font-bold md:text-3xl">Dapatkan Informasi Terbaru</h2>
+                <p class="mt-3 text-white/80 md:text-lg">Daftarkan alamat email Anda untuk menerima kabar kegiatan dan pendaftaran terbaru.</p>
+                <form class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-stretch" aria-label="Formulir sign up">
+                    <label class="sr-only" for="signup-email">Alamat Email</label>
+                    <input id="signup-email" type="email" name="signup_email"
+                        class="w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none focus:ring-2 focus:ring-white/60"
+                        placeholder="Email Anda" required>
+                    <button type="submit"
+                        class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#334B49] transition hover:bg-gray-100">Sign
+                        Up</button>
+                </form>
+                <p class="mt-3 text-xs text-white/60">Kami menghargai privasi Anda. Anda dapat berhenti berlangganan kapan saja.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Sign Up - end -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = Array.from(document.querySelectorAll('[data-scroll-target]'));
+            if (!navLinks.length) {
+                return;
+            }
+
+            const trackedSections = navLinks
+                .map((link) => {
+                    const id = link.dataset.scrollTarget;
+                    const element = document.getElementById(id);
+                    return element ? { id, element } : null;
+                })
+                .filter(Boolean);
+
+            if (!trackedSections.length) {
+                return;
+            }
+
+            let activeId = null;
+            const activeClass = 'underline';
+
+            const updateActive = (id) => {
+                if (!id || id === activeId) {
+                    return;
+                }
+
+                navLinks.forEach((link) => {
+                    const isActive = link.dataset.scrollTarget === id;
+                    link.classList.toggle(activeClass, isActive);
+                    if (isActive) {
+                        link.setAttribute('aria-current', 'page');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
+                });
+
+                activeId = id;
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                if (visible.length) {
+                    updateActive(visible[0].target.id);
+                }
+            }, {
+                rootMargin: '-35% 0px -55% 0px',
+                threshold: [0.1, 0.25, 0.5, 0.75]
+            });
+
+            trackedSections.forEach(({ element }) => observer.observe(element));
+
+            const setActiveFromHash = () => {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && trackedSections.some(({ id }) => id === hash)) {
+                    updateActive(hash);
+                }
+            };
+
+            setActiveFromHash();
+            if (!activeId) {
+                updateActive(trackedSections[0].id);
+            }
+
+            window.addEventListener('hashchange', setActiveFromHash);
+        });
+    </script>
 
 @endsection

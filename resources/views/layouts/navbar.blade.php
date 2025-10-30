@@ -1,4 +1,24 @@
 <nav class="relative bg-white border-gray-200">
+    @php
+        $isHome = request()->routeIs('home');
+        $homeUrl = route('home');
+        $baseLinkClasses = 'block py-2 px-3 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0';
+        $homeSectionItems = [
+            ['label' => 'Home', 'target' => 'home'],
+            ['label' => 'Struktur', 'target' => 'struktur'],
+            ['label' => 'Data Santri', 'target' => 'data-santri'],
+            ['label' => 'Kurikulum', 'target' => 'kurikulum'],
+            ['label' => 'Daftar', 'target' => 'daftar'],
+            ['label' => 'Sign Up', 'target' => 'signup'],
+        ];
+        $routeItems = [
+            [
+                'label' => 'Pengumuman',
+                'url' => route('pengumuman'),
+                'active' => request()->routeIs('pengumuman'),
+            ],
+        ];
+    @endphp
     <!-- Top curtain strip -->
     <div class="absolute inset-x-0 top-0 h-16 z-0 pointer-events-none">
         <div class="absolute inset-0"
@@ -25,36 +45,36 @@
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50
                  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
-                <li>
-                    <a href="{{ route('home') }}"
-                       class="{{ request()->routeIs('home') ? 'block py-2 px-3 text-black underline rounded-sm md:bg-transparent md:text-black md:p-0' : 'block py-2 px-3 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0' }}"
-                       @if(request()->routeIs('home')) aria-current="page" @endif>Home</a>
-                </li>
-                <li>
-                    <a href="{{ route('home') }}"
-                       class="{{ request()->routeIs('home') ? 'block py-2 px-3 text-black underline rounded-sm md:bg-transparent md:text-black md:p-0' : 'block py-2 px-3 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0' }}"
-                       @if(request()->routeIs('home')) aria-current="page" @endif>Struktur</a>
-                </li>
-                <li>
-                    <a href="{{ route('home') }}"
-                       class="{{ request()->routeIs('home') ? 'block py-2 px-3 text-black underline rounded-sm md:bg-transparent md:text-black md:p-0' : 'block py-2 px-3 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0' }}"
-                       @if(request()->routeIs('home')) aria-current="page" @endif>Data Santri</a>
-                </li>
-                <li>
-                    <a href="{{ route('home') }}"
-                       class="{{ request()->routeIs('home') ? 'block py-2 px-3 text-black underline rounded-sm md:bg-transparent md:text-black md:p-0' : 'block py-2 px-3 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0' }}"
-                       @if(request()->routeIs('home')) aria-current="page" @endif>Kurikulum</a>
-                </li>
-                <li>
-                    <a href="{{ route('home') }}"
-                       class="{{ request()->routeIs('home') ? 'block py-2 px-3 text-black underline rounded-sm md:bg-transparent md:text-black md:p-0' : 'block py-2 px-3 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0' }}"
-                       @if(request()->routeIs('home')) aria-current="page" @endif>Daftar</a>
-                </li>
-                <li>
-                    <a href="{{ route('home') }}"
-                       class="{{ request()->routeIs('home') ? 'block py-2 px-3 text-black underline rounded-sm md:bg-transparent md:text-black md:p-0' : 'block py-2 px-3 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0' }}"
-                       @if(request()->routeIs('home')) aria-current="page" @endif>Sign Up</a>
-                </li>
+                @foreach ($homeSectionItems as $item)
+                    @php
+                        $target = $item['target'];
+                        $href = $isHome ? "#{$target}" : "{$homeUrl}#{$target}";
+                        $classes = $baseLinkClasses;
+                        $isInitialActive = $isHome && $target === 'home';
+                        if ($isInitialActive) {
+                            $classes .= ' underline';
+                        }
+                    @endphp
+                    <li>
+                        <a href="{{ $href }}"
+                           class="{{ $classes }}"
+                           @if($isHome) data-scroll-target="{{ $target }}" @endif
+                           @if($isInitialActive) aria-current="page" @endif>{{ $item['label'] }}</a>
+                    </li>
+                @endforeach
+                @foreach ($routeItems as $item)
+                    @php
+                        $classes = $baseLinkClasses;
+                        if ($item['active']) {
+                            $classes .= ' underline';
+                        }
+                    @endphp
+                    <li>
+                        <a href="{{ $item['url'] }}"
+                           class="{{ $classes }}"
+                           @if($item['active']) aria-current="page" @endif>{{ $item['label'] }}</a>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
