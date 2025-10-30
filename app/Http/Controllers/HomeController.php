@@ -20,4 +20,9 @@ class HomeController extends Controller
     {
         return view('pages.pengumuman');
     }
+
+    public function pendaftaran()
+    {
+        return view('pages.pendaftaran');
+    }
 }

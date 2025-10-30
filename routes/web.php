@@ -8,3 +8,4 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/pengumuman', [App\Http\Controllers\HomeController::class, 'pengumuman'])->name('pengumuman');
+Route::get('/pendaftaran', [App\Http\Controllers\HomeController::class, 'pendaftaran'])->name('pendaftaran');

@@ -8,7 +8,6 @@
             ['label' => 'Struktur', 'target' => 'struktur'],
             ['label' => 'Data Santri', 'target' => 'data-santri'],
             ['label' => 'Kurikulum', 'target' => 'kurikulum'],
-            ['label' => 'Daftar', 'target' => 'daftar'],
             ['label' => 'Sign Up', 'target' => 'signup'],
         ];
         $routeItems = [
@@ -17,12 +16,17 @@
                 'url' => route('pengumuman'),
                 'active' => request()->routeIs('pengumuman'),
             ],
+            [
+                'label' => 'Pendaftaran',
+                'url' => route('pendaftaran'),
+                'active' => request()->routeIs('pendaftaran'),
+            ],
         ];
     @endphp
     <!-- Top curtain strip -->
     <div class="absolute inset-x-0 top-0 h-16 z-0 pointer-events-none">
         <div class="absolute inset-0"
-            style="background-image: url('{{ asset('images/assets/curtain.svg') }}'); background-repeat: no-repeat; background-size: auto 115%; background-position: top left;"></div>
+            style="background-image: url('{{ asset('images/assets/curtain.svg') }}'); background-repeat: x-repeat; background-size: auto 115%; background-position: top left;"></div>
         </div>
     </div>
 
