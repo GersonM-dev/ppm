@@ -38,6 +38,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(asset('images/assets/logo4.png'))
             ->brandLogoHeight('5rem')
             ->topNavigation()
+            ->registration()
             ->colors([
                 'primary' => Color::PPM,
             ])
