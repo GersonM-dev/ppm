@@ -16,4 +16,9 @@ class ViewPengumuman extends ViewRecord
             EditAction::make()->label('Edit Pengumuman'),
         ];
     }
+
+    public function getTitle(): string
+    {
+        return 'Lihat Pengumuman';
+    }
 }

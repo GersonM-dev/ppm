@@ -22,7 +22,7 @@ class PengumumanResource extends Resource
 
     protected static ?string $pluralLabel = 'Pengumuman';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Megaphone;
 
     public static function form(Schema $schema): Schema
     {

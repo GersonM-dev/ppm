@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Filament\Resources\Beritas\Schemas;
+
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+
+class BeritaForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                Section::make('Berita')
+                    ->columns(3)
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('title')
+                            ->label('Title')
+                            ->required(),
+                        Select::make('user_id')
+                            ->label('User')
+                            ->relationship('user', 'name')
+                            ->required()
+                            ->default(fn() => auth()->id()),
+                        DatePicker::make('date')
+                            ->label('Date')
+                            ->required(),
+                        FileUpload::make('image_url')
+                            ->label('Image')
+                            ->image()
+                            ->columnSpanFull()
+                            ->nullable(),
+                        RichEditor::make('content')
+                            ->label('Content')
+                            ->required()
+                            ->columnSpanFull(),
+                    ]),
+            ]);
+    }
+}

@@ -16,4 +16,9 @@ class ListPengumumen extends ListRecords
             CreateAction::make()->label('Buat Pengumuman Baru'),
         ];
     }
+
+    public function getTitle(): string
+    {
+        return 'Pengumuman';
+    }
 }

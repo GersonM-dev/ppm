@@ -18,4 +18,9 @@ class EditPengumuman extends EditRecord
             DeleteAction::make()->label('Hapus Pengumuman'),
         ];
     }
+
+        public function getTitle(): string
+    {
+        return 'Edit Pengumuman';
+    }
 }

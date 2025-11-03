@@ -4,6 +4,9 @@ namespace App\Providers\Filament;
 
 use Andreia\FilamentNordTheme\FilamentNordThemePlugin;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use App\Filament\Widgets\DetailSantriGenderChart;
+use App\Filament\Widgets\PemesananStatsOverview;
+use App\Filament\Widgets\PemesananTrendChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -32,8 +35,11 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandLogo(asset('images/assets/logo4.png'))
+            ->brandLogoHeight('5rem')
+            ->topNavigation()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::PPM,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -45,12 +51,12 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                PemesananStatsOverview::class,
+                DetailSantriGenderChart::class,
+                PemesananTrendChart::class
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),
-                FilamentNordThemePlugin::make(),
                 FilamentBackgroundsPlugin::make()->showAttribution(false),
                 BreezyCore::make()
                     ->myProfile(),

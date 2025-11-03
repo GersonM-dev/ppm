@@ -1,110 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-        $announcements = [
-            [
-                'title' => 'Pembukaan Pendaftaran Santri Baru 2025',
-                'timeline' => [
-                    [
-                        'label' => 'Pendaftaran Gelombang I',
-                        'date' => '18 Maret 2025 s.d. 28 Mei 2025',
-                    ],
-                    [
-                        'label' => 'Pendaftaran Gelombang II',
-                        'date' => '27 Mei 2025 s.d. 31 Juni 2025',
-                    ],
-                ],
-            ],
-            [
-                'title' => 'Pembukaan Pendaftaran Santri Baru 2025',
-                'timeline' => [
-                    [
-                        'label' => 'Pendaftaran Gelombang I',
-                        'date' => '18 Maret 2025 s.d. 28 Mei 2025',
-                    ],
-                    [
-                        'label' => 'Pendaftaran Gelombang II',
-                        'date' => '27 Mei 2025 s.d. 31 Juni 2025',
-                    ],
-                ],
-            ],
-        ];
-
-        $calendarYear = 2025;
-        $calendarMonth = 7;
-        $firstOfMonth = new DateTime("{$calendarYear}-{$calendarMonth}-01");
-        $startWeekday = (int) $firstOfMonth->format('N'); // Monday = 1
-        $daysInMonth = (int) $firstOfMonth->format('t');
-
-        $weeks = [];
-        $week = [];
-
-        for ($i = 1; $i < $startWeekday; $i++) {
-            $week[] = null;
-        }
-
-        for ($day = 1; $day <= $daysInMonth; $day++) {
-            $week[] = $day;
-            if (count($week) === 7) {
-                $weeks[] = $week;
-                $week = [];
-            }
-        }
-
-        if (count($week)) {
-            while (count($week) < 7) {
-                $week[] = null;
-            }
-            $weeks[] = $week;
-        }
-
-        $highlightedDays = [8, 9, 10, 11, 12];
-    @endphp
-
     <section class="bg-white py-10 sm:py-12 lg:py-16">
         <div class="mx-auto max-w-7xl px-4 md:px-8">
-            <div class="grid gap-8 lg:grid-cols-[2fr,minmax(0,1fr)] xl:gap-12">
-                <div>
+            <div class="grid gap-8 lg:grid-cols-3 xl:gap-12">
+                <div class="lg:col-span-2">
                     <div class="rounded-3xl border border-[#4B77FF] bg-[#FFF9A6] p-5 shadow-xl/30 sm:p-8">
                         <div class="space-y-6">
-                            @foreach ($announcements as $announcement)
+                            @forelse ($announcements as $announcement)
                                 <article class="rounded-2xl border border-[#CCB300] bg-[#FFFDC8] p-5 shadow-sm sm:p-6">
                                     <h2 class="text-lg font-semibold text-gray-900 sm:text-xl">
-                                        {{ $announcement['title'] }}
+                                        {{ $announcement->title }}
                                     </h2>
 
-                                    <div class="mt-4 space-y-3 text-sm text-gray-700">
-                                        <p class="font-semibold uppercase tracking-wider text-gray-800">Time Line :</p>
+                                    <div class="mt-4 space-y-3 text-sm text-gray-700 leading-relaxed">
+                                        @if ($announcement->date)
+                                            <p class="flex items-center gap-2 font-medium text-gray-800">
+                                                <svg class="h-4 w-4 text-gray-700" viewBox="0 0 20 20"
+                                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M6 2a1 1 0 011 1v1h6V3a1 1 0 112 0v1h1a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 112 0v1zm-2 5v7a1 1 0 001 1h10a1 1 0 001-1V7H4z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span>{{ \Illuminate\Support\Carbon::parse($announcement->date)->format('d F Y') }}</span>
+                                            </p>
+                                        @endif
 
-                                        @foreach ($announcement['timeline'] as $phase)
-                                            <div class="space-y-1">
-                                                <p class="font-medium text-gray-800">{{ $phase['label'] }}</p>
-                                                <p class="flex items-start gap-2 text-gray-700">
-                                                    <svg class="mt-0.5 h-4 w-4 text-gray-700" viewBox="0 0 20 20"
-                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M6 2a1 1 0 011 1v1h6V3a1 1 0 112 0v1h1a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 112 0v1zm-2 5v7a1 1 0 001 1h10a1 1 0 001-1V7H4z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                    <span>{{ $phase['date'] }}</span>
-                                                </p>
+                                        @if (!empty($announcement->image_url))
+                                            <div class="mt-3">
+                                                <img src="{{ asset('storage/' . $announcement->image_url) }}" alt="{{ $announcement->title }}"
+                                                    class="w-full rounded-xl border border-[#CCB300]/40 object-cover" />
                                             </div>
-                                        @endforeach
+                                        @endif
+
+                                        @if (!empty($announcement->content))
+                                            <div>{!! str($announcement->content)->sanitizeHtml() !!}</div>
+                                        @endif
                                     </div>
                                 </article>
-                            @endforeach
+                            @empty
+                                <p class="text-sm text-gray-600">Belum ada pengumuman yang tersedia.</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
 
-                <aside class="space-y-6">
+                <aside class="space-y-6 lg:col-span-1">
                     <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
                         <header class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm uppercase tracking-wide text-gray-500">Kalender</p>
                                 <h3 class="text-lg font-semibold text-gray-900">
-                                    {{ $firstOfMonth->format('F Y') }}
+                                    {{ $calendarFirstOfMonth->format('F Y') }}
                                 </h3>
                             </div>
                             <div class="flex items-center gap-2 text-gray-400">
@@ -140,7 +87,7 @@
                                 <span>Min</span>
                             </div>
                             <div class="mt-3 grid grid-cols-7 gap-2 text-sm">
-                                @foreach ($weeks as $week)
+                                @foreach ($calendarWeeks as $week)
                                     @foreach ($week as $index => $day)
                                         @php
                                             $isHighlighted = $day && in_array($day, $highlightedDays, true);
